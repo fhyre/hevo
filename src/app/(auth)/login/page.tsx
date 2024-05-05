@@ -46,7 +46,7 @@ export default function Page() {
         </div>
         <nav className="text-sm">
           <p className="text-neutral-400">
-            Don't have an account?
+            Don&apos;t have an account?
             <span
               className="ml-1 cursor-pointer text-black underline"
               onClick={() => router.push(Route.SIGNUP)}
