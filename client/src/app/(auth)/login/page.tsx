@@ -1,16 +1,17 @@
 'use client';
-import { FormEvent } from 'react';
 import { AuthInput } from '../AuthInput';
 import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
+import { BaseAuthFormData } from '../auth-types';
+import { useForm } from '@/hooks';
+import { Route } from '@/utils';
 
 export default function Page() {
   const router = useRouter();
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('login');
-  };
+  const { errorData, handleChange, handleSubmit } = useForm<BaseAuthFormData>({
+    email: '',
+    password: '',
+  });
 
   return (
     <>
@@ -21,8 +22,10 @@ export default function Page() {
             <span className="text-sm">Email</span>
             <AuthInput
               type="email"
+              name="email"
               placeholder="Enter your email"
-              onChange={(value: string) => console.log(value)}
+              error={errorData.email}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -31,8 +34,10 @@ export default function Page() {
             <span className="text-sm">Password</span>
             <AuthInput
               type="password"
+              name="password"
               placeholder="Enter your password"
-              onChange={(value: string) => console.log(value)}
+              error={errorData.password}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -44,7 +49,7 @@ export default function Page() {
             Don't have an account?
             <span
               className="ml-1 text-black underline"
-              onClick={() => router.push('/register')}
+              onClick={() => router.push(Route.SIGNUP)}
             >
               Sign Up
             </span>

@@ -1,30 +1,48 @@
 'use client';
+import { useForm } from '@/hooks';
 import { AuthInput } from '../AuthInput';
 import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
+import { Route } from '@/utils';
+import { BaseAuthFormData } from '../auth-types';
+
+type RegisterData = BaseAuthFormData & {
+  firstName: string;
+  lastName: string;
+};
 
 export default function Page() {
   const router = useRouter();
+  const { errorData, handleChange, handleSubmit } = useForm<RegisterData>({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+  });
 
   return (
     <>
       <h1 className="mb-6 text-xl font-bold">Create your account</h1>
-      <form className="[&>*]:mb-4 [&_label]:text-sm">
+      <form className="[&>*]:mb-4 [&_label]:text-sm" onSubmit={handleSubmit}>
         <div className="flex [&>*]:grow">
           <label className="mr-4">
             First Name
             <AuthInput
               type="text"
+              name="firstName"
               placeholder="Enter your first name"
-              onChange={(value: string) => console.log(value)}
+              error={errorData.firstName}
+              onChange={handleChange}
             />
           </label>
           <label>
             Last Name
             <AuthInput
               type="text"
+              name="lastName"
               placeholder="Enter your last name"
-              onChange={(value: string) => console.log(value)}
+              error={errorData.lastName}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -33,8 +51,10 @@ export default function Page() {
             Email
             <AuthInput
               type="email"
+              name="email"
               placeholder="Enter your email"
-              onChange={(value: string) => console.log(value)}
+              error={errorData.email}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -43,8 +63,10 @@ export default function Page() {
             Password
             <AuthInput
               type="password"
+              name="password"
               placeholder="Enter your password"
-              onChange={(value: string) => console.log(value)}
+              error={errorData.password}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -56,7 +78,7 @@ export default function Page() {
             Already have an account?
             <span
               className="ml-1 text-black underline"
-              onClick={() => router.push('/login')}
+              onClick={() => router.push(Route.LOGIN)}
             >
               Log In
             </span>
