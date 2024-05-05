@@ -4,7 +4,7 @@ import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
 import { BaseAuthFormData } from '../auth-types';
 import { useForm } from '@/hooks';
-import { Route } from '@/utils';
+import { RoutePath } from '@/utils';
 
 export default function Page() {
   const router = useRouter();
@@ -49,7 +49,7 @@ export default function Page() {
             Don&apos;t have an account?
             <span
               className="ml-1 cursor-pointer text-black underline"
-              onClick={() => router.push(Route.SIGNUP)}
+              onClick={() => router.push(RoutePath.SIGNUP)}
             >
               Sign Up
             </span>

@@ -3,7 +3,7 @@ import { useForm } from '@/hooks';
 import { AuthInput } from '../AuthInput';
 import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
-import { Route } from '@/utils';
+import { RoutePath } from '@/utils';
 import { BaseAuthFormData } from '../auth-types';
 
 type RegisterData = BaseAuthFormData & {
@@ -78,7 +78,7 @@ export default function Page() {
             Already have an account?
             <span
               className="ml-1 cursor-pointer text-black underline"
-              onClick={() => router.push(Route.LOGIN)}
+              onClick={() => router.push(RoutePath.LOGIN)}
             >
               Log In
             </span>
