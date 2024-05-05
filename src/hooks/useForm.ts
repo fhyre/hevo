@@ -41,10 +41,5 @@ export function useForm<T extends FormData>(initialFormData: T) {
     return true;
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateData()) return;
-  };
-
-  return { errorData, handleChange, handleSubmit };
+  return { formData, errorData, handleChange, validateData };
 }

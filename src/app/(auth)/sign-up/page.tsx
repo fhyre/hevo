@@ -5,6 +5,8 @@ import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
 import { RoutePath } from '@/utils';
 import { BaseAuthFormData } from '../auth-types';
+import { FormEvent } from 'react';
+import toast from 'react-hot-toast';
 
 type RegisterData = BaseAuthFormData & {
   firstName: string;
@@ -13,12 +15,46 @@ type RegisterData = BaseAuthFormData & {
 
 export default function Page() {
   const router = useRouter();
-  const { errorData, handleChange, handleSubmit } = useForm<RegisterData>({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-  });
+  const { formData, errorData, handleChange, validateData } =
+    useForm<RegisterData>({
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+    });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateData()) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Register failed');
+      }
+
+      toast('Signed up successfully');
+      router.push(RoutePath.HOME);
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error('Sign up failed');
+      }
+    }
+  };
 
   return (
     <>

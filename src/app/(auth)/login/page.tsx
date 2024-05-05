@@ -5,13 +5,43 @@ import { useRouter } from 'next/navigation';
 import { BaseAuthFormData } from '../auth-types';
 import { useForm } from '@/hooks';
 import { RoutePath } from '@/utils';
+import { FormEvent } from 'react';
+import { signIn } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
 export default function Page() {
   const router = useRouter();
-  const { errorData, handleChange, handleSubmit } = useForm<BaseAuthFormData>({
-    email: '',
-    password: '',
-  });
+  const { formData, errorData, handleChange, validateData } =
+    useForm<BaseAuthFormData>({
+      email: '',
+      password: '',
+    });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateData()) {
+      return;
+    }
+
+    try {
+      const response = await signIn('credentials', {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+
+      if (!response?.error) {
+        toast('Logged in successfully');
+        router.push(RoutePath.HOME);
+      }
+
+      throw new Error('Login failed');
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    }
+  };
 
   return (
     <>
