@@ -77,7 +77,7 @@ export default function Page() {
           <p className="text-neutral-400">
             Already have an account?
             <span
-              className="ml-1 text-black underline"
+              className="ml-1 cursor-pointer text-black underline"
               onClick={() => router.push(Route.LOGIN)}
             >
               Log In
