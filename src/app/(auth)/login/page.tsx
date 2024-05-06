@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { BaseAuthFormData } from '../auth-types';
 import { useForm } from '@/hooks';
 import { RoutePath } from '@/utils';
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
@@ -16,10 +16,16 @@ export default function Page() {
       email: '',
       password: '',
     });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (loading) return;
+
+    setLoading(true);
+
     if (!validateData()) {
+      setLoading(false);
       return;
     }
 
@@ -42,6 +48,7 @@ export default function Page() {
         toast.error(err.message);
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -73,7 +80,7 @@ export default function Page() {
           </label>
         </div>
         <div>
-          <AuthSubmit text="Login" />
+          <AuthSubmit text="Login" loading={loading} />
         </div>
         <nav className="text-sm">
           <p className="text-neutral-400">

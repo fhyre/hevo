@@ -5,7 +5,7 @@ import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
 import { RoutePath } from '@/utils';
 import { BaseAuthFormData } from '../auth-types';
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 
@@ -23,10 +23,14 @@ export default function Page() {
       firstName: '',
       lastName: '',
     });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     if (!validateData()) {
+      setLoading(false);
       return;
     }
 
@@ -64,6 +68,7 @@ export default function Page() {
         toast.error('Sign up failed');
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -117,7 +122,7 @@ export default function Page() {
           </label>
         </div>
         <div>
-          <AuthSubmit text="Sign Up" />
+          <AuthSubmit text="Sign Up" loading={loading} />
         </div>
         <nav className="text-sm">
           <p className="text-neutral-400">

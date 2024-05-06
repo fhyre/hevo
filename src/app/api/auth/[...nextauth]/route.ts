@@ -23,11 +23,7 @@ const handler = NextAuth({
         if (!user || !(await compare(credentials?.password!, user.password)))
           return null;
 
-        return {
-          id: user.id,
-          name: user.name,
-          created_at: user.created_at,
-        };
+        return user;
       },
     }),
   ],

@@ -18,7 +18,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Toaster position="bottom-center" />
+        <Toaster position="bottom-right" />
         {children}
       </body>
     </html>
