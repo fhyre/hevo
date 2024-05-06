@@ -15,7 +15,7 @@ export default async function AuthLayout({
   }
 
   return (
-    <div className="from-inidigo-500 min-w-screen flex min-h-screen flex-col items-center justify-center bg-gradient-to-tr from-indigo-400 from-25% via-sky-300 via-50% to-emerald-500 to-90%">
+    <div className="from-inidigo-500 min-w-screen flex min-h-screen flex-col items-center justify-center">
       <section className="my-3 w-[50%] min-w-[350px] max-w-[600px] rounded-xl bg-white p-6 shadow-2xl">
         <div className="-ml-3 -mt-4 flex items-center">
           <Image
