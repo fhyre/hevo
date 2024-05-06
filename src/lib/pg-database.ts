@@ -9,7 +9,7 @@ export type UsersTable = {
   id: Generated<string>;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   created_at: Generated<Date>;
   updated_at: Generated<Date>;
 };
@@ -19,7 +19,7 @@ const db = createKysely<Database>();
 export async function createUser(
   name: string,
   email: string,
-  password: string,
+  password?: string,
 ) {
   await db
     .insertInto('users')

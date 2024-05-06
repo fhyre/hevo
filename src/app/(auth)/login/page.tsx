@@ -8,6 +8,7 @@ import { RoutePath } from '@/utils';
 import { FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
+import { GoogleButton } from '../GoogleButton';
 
 export default function Page() {
   const router = useRouter();
@@ -76,21 +77,22 @@ export default function Page() {
             />
           </label>
         </div>
-        <div>
-          <AuthSubmit text="Login" loading={loading} />
-        </div>
-        <nav className="text-sm">
-          <p className="text-neutral-400">
-            Don&apos;t have an account?
-            <span
-              className="ml-1 cursor-pointer text-black underline"
-              onClick={() => router.push(RoutePath.SIGNUP)}
-            >
-              Sign Up
-            </span>
-          </p>
-        </nav>
+        <AuthSubmit text="Login" loading={loading} />
       </form>
+      <div className="-mt-2 mb-2">
+        <GoogleButton variant="login" />
+      </div>
+      <nav className="text-sm">
+        <p className="text-neutral-400">
+          Don&apos;t have an account?
+          <span
+            className="ml-1 cursor-pointer text-black underline"
+            onClick={() => router.push(RoutePath.SIGNUP)}
+          >
+            Sign Up
+          </span>
+        </p>
+      </nav>
     </>
   );
 }

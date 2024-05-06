@@ -8,6 +8,7 @@ import { BaseAuthFormData } from '../auth-types';
 import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
+import { GoogleButton } from '../GoogleButton';
 
 type RegisterData = BaseAuthFormData & {
   firstName: string;
@@ -74,7 +75,7 @@ export default function Page() {
   return (
     <>
       <h1 className="mb-6 text-xl font-bold">Create your account</h1>
-      <form className="[&>*]:mb-4 [&_label]:text-sm" onSubmit={handleSubmit}>
+      <form className="[&>*]:mb-3 [&_label]:text-sm" onSubmit={handleSubmit}>
         <div className="flex [&>*]:grow">
           <label className="mr-4">
             First Name
@@ -136,18 +137,21 @@ export default function Page() {
         <div>
           <AuthSubmit text="Sign Up" loading={loading} />
         </div>
-        <nav className="text-sm">
-          <p className="text-neutral-400">
-            Already have an account?
-            <span
-              className="ml-1 cursor-pointer text-black underline"
-              onClick={() => router.push(RoutePath.LOGIN)}
-            >
-              Log In
-            </span>
-          </p>
-        </nav>
       </form>
+      <div className="-mt-2 mb-2">
+        <GoogleButton variant="signup" />
+      </div>
+      <nav className="text-sm">
+        <p className="text-neutral-400">
+          Already have an account?
+          <span
+            className="ml-1 cursor-pointer text-black underline"
+            onClick={() => router.push(RoutePath.LOGIN)}
+          >
+            Log In
+          </span>
+        </p>
+      </nav>
     </>
   );
 }
