@@ -12,6 +12,7 @@ import { signIn } from 'next-auth/react';
 type RegisterData = BaseAuthFormData & {
   firstName: string;
   lastName: string;
+  confirmPassword: string;
 };
 
 export default function Page() {
@@ -20,6 +21,7 @@ export default function Page() {
     useForm<RegisterData>({
       email: '',
       password: '',
+      confirmPassword: '',
       firstName: '',
       lastName: '',
     });
@@ -117,6 +119,18 @@ export default function Page() {
               name="password"
               placeholder="Enter your password"
               error={errorData.password}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Confirm password
+            <AuthInput
+              type="password"
+              name="confirmPassword"
+              placeholder="Re-enter your password"
+              error={errorData.confirmPassword}
               onChange={handleChange}
             />
           </label>

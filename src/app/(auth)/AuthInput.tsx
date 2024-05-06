@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 type AuthInputProps = {
   type: 'email' | 'password' | 'text';
-  name: 'email' | 'password' | 'firstName' | 'lastName';
+  name: 'email' | 'password' | 'firstName' | 'lastName' | 'confirmPassword';
   error: string | null | undefined;
   placeholder: string;
   onChange: (value: ChangeEvent<HTMLInputElement>) => void;

@@ -27,6 +27,9 @@ export function useForm<T extends FormData>(initialFormData: T) {
         const result = formData[field].length >= 8;
         if (!result)
           tempErrorData[field] = 'Password must have at least 8 characters';
+      } else if (field === 'confirmPassword') {
+        const result = formData['password'] === formData['confirmPassword'];
+        if (!result) tempErrorData[field] = 'Passwords do not match';
       }
     }
 
