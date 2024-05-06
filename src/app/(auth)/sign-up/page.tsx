@@ -7,6 +7,7 @@ import { RoutePath } from '@/utils';
 import { BaseAuthFormData } from '../auth-types';
 import { FormEvent } from 'react';
 import toast from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 
 type RegisterData = BaseAuthFormData & {
   firstName: string;
@@ -43,11 +44,20 @@ export default function Page() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Register failed');
+      const resJson = await response.json();
+
+      if (resJson.error) {
+        throw new Error(resJson.error);
       }
 
-      toast('Signed up successfully');
+      toast.success('Signed up successfully');
+
+      await signIn('credentials', {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+
       router.push(RoutePath.HOME);
     } catch (err) {
       if (err instanceof Error) {

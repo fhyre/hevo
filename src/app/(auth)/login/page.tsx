@@ -31,11 +31,12 @@ export default function Page() {
       });
 
       if (!response?.error) {
-        toast('Logged in successfully');
+        toast.success('Logged in successfully');
         router.push(RoutePath.HOME);
+        return;
       }
 
-      throw new Error('Login failed');
+      throw new Error('Email or password is incorrect');
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
