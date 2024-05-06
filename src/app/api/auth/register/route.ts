@@ -11,7 +11,7 @@ export async function POST(request: Request) {
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       email: Joi.string().email().required(),
-      password: Joi.string().length(8).required(),
+      password: Joi.string().min(8).required(),
     });
 
     const validation = schema.validate({
