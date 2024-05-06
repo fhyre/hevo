@@ -21,13 +21,9 @@ export default function Page() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (loading) return;
+    if (!validateData()) return;
 
     setLoading(true);
-
-    if (!validateData()) {
-      setLoading(false);
-      return;
-    }
 
     try {
       const response = await signIn('credentials', {
@@ -48,6 +44,7 @@ export default function Page() {
         toast.error(err.message);
       }
     }
+
     setLoading(false);
   };
 

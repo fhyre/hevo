@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 type FormData = {
   [key: string]: string;
@@ -6,14 +6,14 @@ type FormData = {
 
 export function useForm<T extends FormData>(initialFormData: T) {
   const [formData, setFormData] = useState<T>(initialFormData);
-  const [errorData, setErrorData] = useState<T>(initialFormData);
+  const [errorData, setErrorData] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const validateData = () => {
-    const tempErrorData = initialFormData as FormData;
+    const tempErrorData: Record<string, string> = {};
 
     for (const field in formData) {
       if (!formData[field]) {
@@ -35,7 +35,7 @@ export function useForm<T extends FormData>(initialFormData: T) {
 
     setErrorData(tempErrorData as T);
 
-    for (const field in errorData) {
+    for (const field in tempErrorData) {
       if (tempErrorData[field]) {
         return false;
       }
