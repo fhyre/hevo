@@ -5,8 +5,8 @@ This project:
 
 - Allows a user to login with email and password or with Google OAuth.
 - Uses a persistent Postgres Database hosted on Vercel ([Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)).
-- Frontend is also hosted on Vercel here: [hevo.vercel.app](https://hevo.vercel.app).
-- Entire CI/CD pipeline is managed by Vercel.
+- Production Frontend is also hosted on Vercel here: [hevo.vercel.app](https://hevo.vercel.app).
+- The CI/CD pipeline is managed by Vercel, every pull request or merge into main will create a new deployment.
 - End-to-end tests using Playwright.
 
 # Local Development
@@ -24,8 +24,8 @@ Locally building and deploying the application is not quite as simple mainly due
 8. Click the `Import` button next to the repository you wish to deploy. **This first deploy will FAIL** and is completely normal. If it does not fail, that is a matter of concern.
 9. At this point, you should have the project in your list of projects. Click into the project and then click the `Storage` tab.
 10. In the `Storage` tab, click the `Create Database` button and select `Postgres`. Accept the default options.
-11. The database should have automatically connected, if not click the `Connect Database` button and select the Postgres database.
-12. Vercel does not offer a good way create the initial tables of the database it will have to be done manually. Still in the `Storage` tab click the Postgres database. Now, make sure you are in the `Data` tab and then click `Query`. You will now have to enter this SQL query to create the Users table:
+11. The database should have automatically connected. If not, click the `Connect Database` button and select the Postgres database you just created.
+12. Vercel does not offer a good way create the initial tables for the database which means it will have to be done manually. Still in the `Storage` tab click the Postgres database. In the database dashboard, make sure you are in the `Data` tab and then click `Query`. You will now have to enter this SQL query to create the Users table:
     <br><br>
     ```
     CREATE TABLE users (
@@ -40,7 +40,7 @@ Locally building and deploying the application is not quite as simple mainly due
     Click `Run Query`. You should also see a message indicating that the table was successfully created. Go back to `Browse` and click where it says `Choose a table` and you should see a `users` table in the dropdown.
 13. On your local machine, open a terminal and navigate to the root of the project.
 14. In the terminal, enter the command `vercel link` and follow the instructions to link the project on Vercel to your local project.
-15. After successfully linking, still in the root of the project, type the command `vercel env pull .env` which should create a `.env` file.
+15. After successfully linking, still in the root of the project, type the command `vercel env pull .env` which should create a `.env` file at the root of the directory.
 16. In the `.env` file you will have to add four more **required** environment variables:
     <br><br>
     ```
@@ -57,7 +57,7 @@ Locally building and deploying the application is not quite as simple mainly due
 18. To fix the Vercel live deployments, go back to the Vercel web client, navigate again to the project, go to the `Settings` tab, click the `Environment Variables` tab and under `Create new`, you should see a section that allows you to add keys and a button called `Add another`. Add all four keys with the following changes:
     <br><br>
     - `NEXTAUTH_SECRET` can still be any string, but it is best practice to ensure it is different from your local secret.
-    - `NEXTAUTH_URL` will have to be whatever your domain is. In my case it is `https://hevo.vercel.app`. You can check your current domain in the `Domains` tab right above `Environment Variables`.
+    - `NEXTAUTH_URL` will be whatever your domain is. In my case it is `https://hevo.vercel.app`. You can check your current domain in the `Domains` tab right above the `Environment Variables` tab.
     - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` will remain the same. You can copy over what you have in your `.env` file.
       <br><br>
 19. In `Google Cloud Console` where you created the OAuth configuration, you will also have to add your live domain to `Authorized JavaScript origins` and `Authorized redirect URIs`.
