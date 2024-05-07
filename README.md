@@ -9,6 +9,12 @@ This project:
 - The CI/CD pipeline is managed by Vercel, every pull request or merge into main will create a new deployment.
 - End-to-end tests using Playwright.
 
+# Test User:
+
+If you want an already created user account, you can use the following:
+email: test@email.com
+password: asdfghjkl
+
 # Local Development
 
 Locally building and deploying the application is not quite as simple mainly due to Vercel Postgres integration, therefore it is crucial to follow each step below precisely for the application to build properly.
