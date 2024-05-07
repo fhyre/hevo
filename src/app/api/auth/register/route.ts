@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     });
 
     if (validation.error) {
-      throw new Error('Validation failed');
+      throw new Error('Invalid credentials');
     }
 
     const user = await findUser(email);

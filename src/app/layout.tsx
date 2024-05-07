@@ -20,7 +20,7 @@ export default async function RootLayout({
       <body
         className={`${inter.className} bg-gradient-to-tr from-indigo-400 from-25% via-sky-300 via-50% to-emerald-500 to-90%`}
       >
-        <Toaster position="top-right" />
+        <Toaster />
         {children}
       </body>
     </html>

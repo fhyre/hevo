@@ -66,7 +66,7 @@ export default function Page() {
       router.push(RoutePath.HOME);
     } catch (err) {
       if (err instanceof Error) {
-        toast.error('Sign up failed');
+        toast.error(err.message);
       }
     }
     setLoading(false);
