@@ -12,8 +12,9 @@ This project:
 # Test User:
 
 If you want an already created user account, you can use the following:
-email: test@email.com
-password: asdfghjkl
+
+- email: test@email.com
+- password: asdfghjkl
 
 # Local Development
 
