@@ -3,7 +3,7 @@ import { useForm } from '@/hooks';
 import { AuthInput } from '../AuthInput';
 import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
-import { RoutePath } from '@/utils';
+import { AuthStatus, RoutePath } from '@/utils';
 import { BaseAuthFormData } from '../auth-types';
 import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -55,7 +55,7 @@ export default function Page() {
         throw new Error(resJson.error);
       }
 
-      toast.success('Signed up successfully');
+      toast.success(AuthStatus.SIGNUP_SUCCESS);
 
       await signIn('credentials', {
         email: formData.email,

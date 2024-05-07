@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
 import { createUser, findUser } from '@/lib';
+import { AuthStatus } from '@/utils';
 
 export async function POST(request: Request) {
   try {
@@ -22,11 +23,11 @@ export async function POST(request: Request) {
     });
 
     if (validation.error) {
-      throw new Error('Invalid credentials');
+      throw new Error(AuthStatus.INVALID_CREDENTIALS);
     }
 
     const user = await findUser(email);
-    if (user) throw new Error('Email already exists');
+    if (user) throw new Error(AuthStatus.EMAIL_EXISTS);
 
     const hashedPassword = await hash(password, 10);
 

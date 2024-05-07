@@ -36,3 +36,7 @@ export async function findUser(email: string) {
 
   return user;
 }
+
+export async function deleteUser(email: string) {
+  await db.deleteFrom('users').where('email', '=', email).execute();
+}

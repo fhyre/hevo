@@ -1,3 +1,4 @@
+import { ValidationError } from '@/utils';
 import { useState } from 'react';
 
 type FormData = {
@@ -17,19 +18,18 @@ export function useForm<T extends FormData>(initialFormData: T) {
 
     for (const field in formData) {
       if (!formData[field]) {
-        tempErrorData[field] = 'This field is required';
+        tempErrorData[field] = ValidationError.REQUIRED;
       } else if (field === 'email') {
         const result = new RegExp(
           /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         ).test(formData[field]);
-        if (!result) tempErrorData[field] = 'Invalid email address';
+        if (!result) tempErrorData[field] = ValidationError.INVALID_EMAIL;
       } else if (field === 'password') {
         const result = formData[field].length >= 8;
-        if (!result)
-          tempErrorData[field] = 'Password must have at least 8 characters';
+        if (!result) tempErrorData[field] = ValidationError.PASSWORD_MIN_LENGTH;
       } else if (field === 'confirmPassword') {
         const result = formData['password'] === formData['confirmPassword'];
-        if (!result) tempErrorData[field] = 'Passwords do not match';
+        if (!result) tempErrorData[field] = ValidationError.PASSWORD_MISMATCH;
       }
     }
 

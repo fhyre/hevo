@@ -4,7 +4,7 @@ import { AuthSubmit } from '../AuthSubmit';
 import { useRouter } from 'next/navigation';
 import { BaseAuthFormData } from '../auth-types';
 import { useForm } from '@/hooks';
-import { RoutePath } from '@/utils';
+import { AuthStatus, RoutePath } from '@/utils';
 import { FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
@@ -34,12 +34,12 @@ export default function Page() {
       });
 
       if (!response?.error) {
-        toast.success('Logged in successfully');
+        toast.success(AuthStatus.LOGIN_SUCCESS);
         router.push(RoutePath.HOME);
         return;
       }
 
-      throw new Error('Email or password is incorrect');
+      throw new Error(AuthStatus.EMAIL_PASSWORD_INCORRECT);
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
