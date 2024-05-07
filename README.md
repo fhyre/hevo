@@ -9,7 +9,7 @@ This project:
 - The CI/CD pipeline is managed by Vercel, every pull request or merge into main will create a new deployment.
 - End-to-end tests using Playwright.
 
-# Test User:
+# Test User
 
 If you want an already created user account, you can use the following:
 
