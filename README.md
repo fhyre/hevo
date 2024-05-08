@@ -72,7 +72,7 @@ Locally building and deploying the application is not quite as simple mainly due
 
 # Docker
 
-1. **MUST COMPLETE THE ENTIRE LOCAL DEVELOPMENT SETUP FROM ABOVE.**
+1. **MUST AT LEAST COMPLETE THE LOCAL DEVELOPMENT SETUP FROM ABOVE UP TO STEP 17.**
 2. You must first install Docker and Docker compose [here](https://docs.docker.com/compose/install/).
 3. Open a terminal to the root of the project, run the command `docker compose up`. This command might take a bit to finish.
 4. If everything works out, you should be able to go to `localhost:3000` in your browser to test the application.
@@ -82,7 +82,7 @@ Locally building and deploying the application is not quite as simple mainly due
 This application uses Playwright to run end-to-end tests. The tests are located in the `e2e` folder.
 To run tests:
 
-1. **MUST COMPLETE THE ENTIRE LOCAL DEVELOPMENT SETUP FROM ABOVE.**
+1. **MUST AT LEAST COMPLETE THE LOCAL DEVELOPMENT SETUP FROM ABOVE UP TO STEP 17.**
 2. Make sure you've installed project dependencies using `npm install`.
 3. Run the command `npx playwright install` to install all the required browsers.
 4. Run the command `npm run test` to run the tests.
