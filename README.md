@@ -28,7 +28,7 @@ Locally building and deploying the application is not quite as simple mainly due
 5. Pull down this repository and upload it to your own Github account.
 6. Log into [Vercel](https://vercel.com/login) on a web browser and, if you haven't already, link your Github account with Vercel.
 7. In the `Overview` tab click the button that says `Add New...` and then in the dropdown `Project`.
-8. Click the `Import` button next to the repository you wish to deploy. **This first deploy will FAIL** and is completely normal. If it does not fail, that is a matter of concern.
+8. Click the `Import` button next to the repository that contains this project. **This first deploy will FAIL** and is completely normal. If it does not fail, that is a matter of concern.
 9. At this point, you should have the project in your list of projects. Click into the project and then click the `Storage` tab.
 10. In the `Storage` tab, click the `Create Database` button and select `Postgres`. Accept the default options.
 11. The database should have automatically connected. If not, click the `Connect Database` button and select the Postgres database you just created.
