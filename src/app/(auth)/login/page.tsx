@@ -1,6 +1,6 @@
 'use client';
-import { AuthInput } from '../AuthInput';
-import { AuthSubmit } from '../AuthSubmit';
+import { AuthInput } from '../auth-input';
+import { AuthSubmit } from '../auth-submit';
 import { useRouter } from 'next/navigation';
 import { BaseAuthFormData } from '../auth-types';
 import { useForm } from '@/hooks';
@@ -8,7 +8,7 @@ import { AuthStatus, RoutePath } from '@/utils';
 import { FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
-import { GoogleButton } from '../GoogleButton';
+import { GoogleButton } from '../google-button';
 
 export default function Page() {
   const router = useRouter();

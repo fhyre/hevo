@@ -1,14 +1,14 @@
 'use client';
 import { useForm } from '@/hooks';
-import { AuthInput } from '../AuthInput';
-import { AuthSubmit } from '../AuthSubmit';
+import { AuthInput } from '../auth-input';
+import { AuthSubmit } from '../auth-submit';
 import { useRouter } from 'next/navigation';
 import { AuthStatus, RoutePath } from '@/utils';
 import { BaseAuthFormData } from '../auth-types';
 import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
-import { GoogleButton } from '../GoogleButton';
+import { GoogleButton } from '../google-button';
 
 type RegisterData = BaseAuthFormData & {
   firstName: string;

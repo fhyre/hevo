@@ -3,7 +3,7 @@
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { useState } from 'react';
-import { LoadingSpinner } from './LoadingSpinner';
+import { LoadingSpinner } from './loading-spinner';
 
 export function SignOutButton() {
   const [loading, setLoading] = useState(false);
