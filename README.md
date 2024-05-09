@@ -19,7 +19,8 @@ If you want an already created user account for [hevo.vercel.app](https://hevo.v
 # Local Development
 
 Locally building and deploying the application is not quite as simple mainly due to Vercel Postgres integration, therefore it is crucial to follow each step below precisely for the application to build properly.
-<strong>Simply running <code>npm install</code> followed by <code>npm run dev</code> will not work</strong>.
+
+**If you just want to see the UI of the application build locally, you can run `npm install` and `npm run dev`, but you will not be able to use Google OAuth or sign in with credentials due to Vercel Postgres integration. To properly enable all features, please follow the steps below.**
 
 1. Must have [node](https://nodejs.org/en/download) version of at least `20.10.0`.
 2. Must have a Vercel account, if you do not sign up [here](https://vercel.com/signup).
