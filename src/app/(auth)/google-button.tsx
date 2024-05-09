@@ -7,6 +7,7 @@ export function GoogleButton({ variant }: { variant: 'login' | 'signup' }) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    if (loading) return;
     setLoading(true);
     await signIn('google');
     setLoading(false);

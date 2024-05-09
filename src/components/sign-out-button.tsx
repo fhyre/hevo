@@ -9,6 +9,7 @@ export function SignOutButton() {
   const [loading, setLoading] = useState(false);
 
   const handleSignOut = async () => {
+    if (loading) return;
     setLoading(true);
     await signOut();
     setLoading(false);
