@@ -3,15 +3,15 @@
 This project:
 <br>
 
-- Allows a user to login with email and password or with Google OAuth.
-- Uses a persistent Postgres Database hosted on Vercel ([Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)).
+- Allows a user create and login with email and password or with Google OAuth.
+- Uses a persistent Postgres Database that stores created users and is hosted on Vercel ([Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)).
 - Production Frontend is also hosted on Vercel here: [hevo.vercel.app](https://hevo.vercel.app).
 - The CI/CD pipeline is managed by Vercel, every pull request or merge into main will create a new deployment.
 - End-to-end tests using Playwright.
 
 # Test User
 
-If you want an already created user account, you can use the following:
+If you want an already created user account for [hevo.vercel.app](https://hevo.vercel.app), you can use the following:
 
 - email: test@email.com
 - password: asdfghjkl
@@ -19,7 +19,8 @@ If you want an already created user account, you can use the following:
 # Local Development
 
 Locally building and deploying the application is not quite as simple mainly due to Vercel Postgres integration, therefore it is crucial to follow each step below precisely for the application to build properly.
-<strong>Simply running <code>npm install</code> followed by <code>npm run dev</code> will not work</strong>.
+
+**If you just want to see the UI of the application build locally, you can run `npm install` and `npm run dev`, but you will not be able to use Google OAuth or sign in with credentials due to Vercel Postgres integration. To properly enable all features, please follow the steps below.**
 
 1. Must have [node](https://nodejs.org/en/download) version of at least `20.10.0`.
 2. Must have a Vercel account, if you do not sign up [here](https://vercel.com/signup).
@@ -28,7 +29,7 @@ Locally building and deploying the application is not quite as simple mainly due
 5. Pull down this repository and upload it to your own Github account.
 6. Log into [Vercel](https://vercel.com/login) on a web browser and, if you haven't already, link your Github account with Vercel.
 7. In the `Overview` tab click the button that says `Add New...` and then in the dropdown `Project`.
-8. Click the `Import` button next to the repository you wish to deploy. **This first deploy will FAIL** and is completely normal. If it does not fail, that is a matter of concern.
+8. Click the `Import` button next to the repository that contains this project. **This first deploy will FAIL** and is completely normal. If it does not fail, that is a matter of concern.
 9. At this point, you should have the project in your list of projects. Click into the project and then click the `Storage` tab.
 10. In the `Storage` tab, click the `Create Database` button and select `Postgres`. Accept the default options.
 11. The database should have automatically connected. If not, click the `Connect Database` button and select the Postgres database you just created.
@@ -72,7 +73,7 @@ Locally building and deploying the application is not quite as simple mainly due
 
 # Docker
 
-1. **MUST COMPLETE THE ENTIRE LOCAL DEVELOPMENT SETUP FROM ABOVE.**
+1. **MUST AT LEAST COMPLETE THE LOCAL DEVELOPMENT SETUP FROM ABOVE UP TO STEP 17.**
 2. You must first install Docker and Docker compose [here](https://docs.docker.com/compose/install/).
 3. Open a terminal to the root of the project, run the command `docker compose up`. This command might take a bit to finish.
 4. If everything works out, you should be able to go to `localhost:3000` in your browser to test the application.
@@ -82,7 +83,7 @@ Locally building and deploying the application is not quite as simple mainly due
 This application uses Playwright to run end-to-end tests. The tests are located in the `e2e` folder.
 To run tests:
 
-1. **MUST COMPLETE THE ENTIRE LOCAL DEVELOPMENT SETUP FROM ABOVE.**
+1. **MUST AT LEAST COMPLETE THE LOCAL DEVELOPMENT SETUP FROM ABOVE UP TO STEP 17.**
 2. Make sure you've installed project dependencies using `npm install`.
 3. Run the command `npx playwright install` to install all the required browsers.
 4. Run the command `npm run test` to run the tests.
