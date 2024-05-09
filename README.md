@@ -4,7 +4,7 @@ This project:
 <br>
 
 - Allows a user create and login with email and password or with Google OAuth.
-- Uses a persistent Postgres Database that stores the users hosted on Vercel ([Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)).
+- Uses a persistent Postgres Database that stores created users and is hosted on Vercel ([Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)).
 - Production Frontend is also hosted on Vercel here: [hevo.vercel.app](https://hevo.vercel.app).
 - The CI/CD pipeline is managed by Vercel, every pull request or merge into main will create a new deployment.
 - End-to-end tests using Playwright.
